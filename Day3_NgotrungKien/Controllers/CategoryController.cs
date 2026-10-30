@@ -82,24 +82,29 @@ namespace Day3_NgotrungKien.Controllers
         }
 
         // GET: Category/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete( int id)
         {
-            return View();
+            var category = SeedData.category.FirstOrDefault(category => category.ID==id);
+            if (category==null)
+            {
+                return NotFound();
+            }
+            
+            return View(category);
         }
 
         // POST: Category/Delete/5
-        [HttpPost]
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult DeleteConfirmed([FromRoute] int id)
         {
-            try
+            var esistingCategory = SeedData.category.FirstOrDefault(c => c.ID==id);
+            if (esistingCategory==null)
             {
-                return RedirectToAction(nameof(Index));
+                return NotFound();
             }
-            catch
-            {
-                return View();
-            }
+            SeedData.category.Remove(esistingCategory);
+            return RedirectToAction(nameof(Index));
         }
     }
 }
