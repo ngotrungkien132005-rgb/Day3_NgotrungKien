@@ -5,7 +5,13 @@ using Day3_NgotrungKien.Data;
 namespace Day3_NgotrungKien.Controllers
 {
     public class CategoryController : Controller
-    {
+    {   //Ilogger<CategoryController> _logger;
+        private readonly ILogger<CategoryController> _logger;
+            // public CategoryController(ILogger<CategoryController> logger)
+            public CategoryController(ILogger<CategoryController> logger)
+        {
+            _logger=logger;
+        }
         // GET: Category
         public ActionResult Index()
         {
@@ -16,7 +22,9 @@ namespace Day3_NgotrungKien.Controllers
         // GET: Category/Details/5
         public ActionResult Details(int id)
         {
-
+            _logger.LogInformation("Details action called with id: {id}", id);
+            _logger.LogError("This is a test error log for category details with id: {id}", id);
+            // lay ra id laasy tu dataseed
             var category = SeedData.category.FirstOrDefault(c => c.ID==id);
             // neu category==null thi tr ve trang loi
             if (category==null)

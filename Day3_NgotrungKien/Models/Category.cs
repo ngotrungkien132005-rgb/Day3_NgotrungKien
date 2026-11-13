@@ -10,7 +10,9 @@ namespace Day3_NgotrungKien.Models
         [Required]
         [StringLength(100, MinimumLength = 3, ErrorMessage = "Name must be between 3 and 100 characters.")]
         public string? Name { get; set;  }
-
+         
         public string Description { get; set; }=string.Empty;
+        // navigation property to Product
+        public List<Product>? Products { get; set; }
     }
 }
