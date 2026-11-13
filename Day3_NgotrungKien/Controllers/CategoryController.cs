@@ -13,10 +13,31 @@ namespace Day3_NgotrungKien.Controllers
             _logger=logger;
         }
         // GET: Category
-        public ActionResult Index()
+        public ActionResult Index(string? search, int page = 1)
         {
-            var _categories = SeedData.category;
-            return View(_categories);
+            const int pageSize = 2;
+            var filteredCategories = SeedData.category.AsEnumerable();
+
+            if (!string.IsNullOrWhiteSpace(search))
+            {
+                filteredCategories = filteredCategories.Where(c =>
+                    (c.Name?.Contains(search, StringComparison.OrdinalIgnoreCase) ?? false) ||
+                    c.Description.Contains(search, StringComparison.OrdinalIgnoreCase));
+            }
+
+            var totalItems = filteredCategories.Count();
+            var totalPages = Math.Max(1, (int)Math.Ceiling(totalItems / (double)pageSize));
+            page = Math.Clamp(page, 1, totalPages);
+
+            var categories = filteredCategories
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            ViewBag.Search = search;
+            ViewBag.CurrentPage = page;
+            ViewBag.TotalPages = totalPages;
+            return View(categories);
         }
 
         // GET: Category/Details/5

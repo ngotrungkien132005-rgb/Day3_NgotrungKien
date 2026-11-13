@@ -9,6 +9,16 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+<form asp-action="Index" method="get" class="row g-2 mb-3">
+    <div class="col-auto">
+        <input type="search" name="search" value="@ViewBag.Search"
+               class="form-control" placeholder="Tìm theo tên hoặc mô tả" />
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="border-0 bg-transparent p-0 me-3 text-primary text-decoration-underline">Tìm kiếm</button>
+        <a asp-action="Index" class="text-secondary text-decoration-underline">Xóa tìm kiếm</a>
+    </div>
+</form>
 <table class="table">
     <thead>
         <tr>
@@ -48,5 +58,29 @@
         
     </tbody>
 </table>
-<button>Trước</button>
-<button>Sau</button>
+@{
+    var currentPage = (int)ViewBag.CurrentPage;
+    var totalPages = (int)ViewBag.TotalPages;
+}
+
+<div class="d-flex gap-2 align-items-center">
+    @if (currentPage > 1)
+    {
+        <a class="text-secondary text-decoration-underline" asp-action="Index" asp-route-search="@ViewBag.Search" asp-route-page="@(currentPage - 1)">Trước</a>
+    }
+    else
+    {
+        <button class="border-0 bg-transparent p-0 text-muted" disabled>Trước</button>
+    }
+
+    <span> @currentPage / @totalPages</span>
+     
+    @if (currentPage < totalPages)
+    {
+        <a class="text-primary text-decoration-underline" asp-action="Index" asp-route-search="@ViewBag.Search" asp-route-page="@(currentPage + 1)">Sau</a>
+    }
+    else
+    {
+        <button class="border-0 bg-transparent p-0 text-muted" disabled>Sau</button>
+    }
+</div>
