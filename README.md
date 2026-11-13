@@ -5,3 +5,9 @@
 <img width="1847" height="972" alt="Ảnh chụp màn hình 2026-10-30 163144" src="https://github.com/user-attachments/assets/873e4c3b-44d8-4d5f-81b2-cb2ec08d145c" />
 <img width="1751" height="1007" alt="Ảnh chụp màn hình 2026-10-30 170541" src="https://github.com/user-attachments/assets/b064e159-c934-4d66-8600-2f86cf0b5da2" />
 <img width="1751" height="1007" alt="Ảnh chụp màn hình 2026-10-30 170541" src="https://github.com/user-attachments/assets/361e6298-d215-4c59-863b-ac72544c869a" />
+<img width="1773" height="790" alt="image" src="https://github.com/user-attachments/assets/28e669a1-7808-4400-bc2e-3cac2aef427e" />
+
+
+
+
+<img width="1481" height="786" alt="image" src="https://github.com/user-attachments/assets/bf8c1388-c899-4789-adf9-24ba72e8c9b4" />
